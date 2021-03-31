@@ -1,20 +1,13 @@
-package application.residentEvil.domain.entities;
+package application.residentEvil.domain.models.serviceModels;
 
-import org.springframework.lang.NonNull;
-import application.residentEvil.domain.entities.*;
-//import application.residentEvil.domain.entities.Magnitude;
+import application.residentEvil.domain.entities.CreatorEnum;
+import application.residentEvil.domain.entities.MagnitudeEnum;
+import application.residentEvil.domain.entities.Mutation;
 
-
-
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "viruses")
-public class Virus extends BaseEntity {
-
+public class VirusAddServiceModel {
     private String name;
     private String description;
     private String sideEffects;
@@ -26,13 +19,11 @@ public class Virus extends BaseEntity {
     private Integer hoursUntilTurn;
     private MagnitudeEnum magnitudeEnum;
     private LocalDate releaseDate;
-    private List<Capital> capital;
+    private List<String> capital;
 
-    public Virus() {
+    public VirusAddServiceModel() {
     }
 
-    @Column(name="name")
-    @NonNull
     public String getName() {
         return name;
     }
@@ -41,7 +32,6 @@ public class Virus extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name="description")
     public String getDescription() {
         return description;
     }
@@ -50,7 +40,6 @@ public class Virus extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name="side_effects")
     public String getSideEffects() {
         return sideEffects;
     }
@@ -59,17 +48,14 @@ public class Virus extends BaseEntity {
         this.sideEffects = sideEffects;
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="creator")
-    public CreatorEnum getCreator() {
+    public CreatorEnum getCreatorEnum() {
         return creatorEnum;
     }
 
-    public void setCreator(CreatorEnum creatorEnum) {
+    public void setCreatorEnum(CreatorEnum creatorEnum) {
         this.creatorEnum = creatorEnum;
     }
 
-    @Column(name="is_deadly")
     public boolean isDeadly() {
         return isDeadly;
     }
@@ -78,7 +64,6 @@ public class Virus extends BaseEntity {
         isDeadly = deadly;
     }
 
-    @Column(name="is_curable")
     public boolean isCurable() {
         return isCurable;
     }
@@ -87,8 +72,6 @@ public class Virus extends BaseEntity {
         isCurable = curable;
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="mutation")
     public Mutation getMutation() {
         return mutation;
     }
@@ -97,7 +80,6 @@ public class Virus extends BaseEntity {
         this.mutation = mutation;
     }
 
-    @Column(name="turnover_rate")
     public Integer getTurnoverRate() {
         return turnoverRate;
     }
@@ -106,48 +88,35 @@ public class Virus extends BaseEntity {
         this.turnoverRate = turnoverRate;
     }
 
-    @Column(name="hours_until_turn")
     public Integer getHoursUntilTurn() {
         return hoursUntilTurn;
     }
 
-    public void setHoursUntilTurn(Integer  hoursUntilTurn) {
+    public void setHoursUntilTurn(Integer hoursUntilTurn) {
         this.hoursUntilTurn = hoursUntilTurn;
     }
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="magnitude")
-    public MagnitudeEnum getMagnitude() {
+    public MagnitudeEnum getMagnitudeEnum() {
         return magnitudeEnum;
     }
 
-    public void setMagnitude(MagnitudeEnum magnitudeEnum) {
+    public void setMagnitudeEnum(MagnitudeEnum magnitudeEnum) {
         this.magnitudeEnum = magnitudeEnum;
     }
 
-    @Column(name="release_date")
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate  releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-
-    @OneToMany(targetEntity = Capital.class, cascade = {CascadeType.ALL})
-    @JoinTable(name="viruses_capitals",
-             joinColumns = @JoinColumn(name="virus_id", referencedColumnName = "id"),
-             inverseJoinColumns =@JoinColumn(name="capital_id", referencedColumnName = "id") )
-     //@Column(name="capital")
-    public List<Capital> getCapital() {
-
+    public List<String> getCapital() {
         return capital;
     }
 
-    public void setCapital(List<Capital> capital) {
-
+    public void setCapital(List<String> capital) {
         this.capital = capital;
     }
-
 }

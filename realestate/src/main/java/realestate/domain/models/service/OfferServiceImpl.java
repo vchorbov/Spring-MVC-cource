@@ -75,7 +75,6 @@ public class OfferServiceImpl implements OfferService {
            throw new IllegalArgumentException("No matching offer has been found!");
         }
 
-
         this.offerRepository.delete(offer);
     }
 

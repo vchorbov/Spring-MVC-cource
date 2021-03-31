@@ -36,6 +36,8 @@ public class VirusAddBindingModel {
         this.name = name;
     }
 
+    @NonNull
+    @Size(min=5, max=100, message = "The length of the description should be between 5 and 100 symbols")
     public String getDescription() {
         return description;
     }

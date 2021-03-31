@@ -11,17 +11,6 @@ import javax.validation.Validator;
 @Configuration
 public class ApplicationBeanConfiguration {
 
-
-//    private final OfferRepository offerRepository;
-//    private final Validator validator;
-//
-//    @Autowired
-//    public ApplicationBeanConfiguration(OfferRepository offerRepository, Validator validator) {
-//        this.offerRepository = offerRepository;
-//        this.validator = validator;
-//    }
-
-
     @Bean(name="validator")
     public Validator validator() {
         return Validation.buildDefaultValidatorFactory().getValidator();
