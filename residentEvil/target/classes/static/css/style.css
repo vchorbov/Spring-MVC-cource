@@ -1,0 +1,21 @@
+.rе-background {
+background: #900C45;
+color: #ffff;
+
+}
+
+.jumbotron{
+padding: 60px;
+}
+
+.jumbotron h1{
+    padding-bottom: 43px;
+    border-bottom: 2px solid;
+
+}
+.jumbotron p{
+    margin-top: 24px;
+}
+small#nameHelp{
+ color: red;
+}

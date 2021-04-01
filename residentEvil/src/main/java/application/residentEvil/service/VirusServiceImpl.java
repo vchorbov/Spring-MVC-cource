@@ -38,8 +38,23 @@ public class VirusServiceImpl implements VirusService {
     }
 
     @Override
-    public boolean eradicateVirus(VirusAddBindingModel virusAddBindingModel) {
-       return true;
+    public boolean eradicateVirus(String id) {
+       this.virusRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public boolean eradicateVirusByName(String name) {
+      Virus toEradicate =  this.virusRepository
+                .findAll()
+                .stream()
+                .filter(virus -> virus.getName().equals(name))
+                .findFirst().orElse(null);
+      if(toEradicate == null){
+          return false;
+      }
+      this.virusRepository.delete(toEradicate);
+      return true;
     }
 
 }

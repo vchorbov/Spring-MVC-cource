@@ -8,5 +8,7 @@ import java.util.List;
 public interface VirusService {
     boolean spread(VirusAddBindingModel virusAddBindingModel);
     List<VirusAddBindingModel> getAllAddedViruses();
-    boolean eradicateVirus(VirusAddBindingModel virusAddBindingModel);
+    boolean eradicateVirus(String id);
+    boolean eradicateVirusByName(String name);
+
 }

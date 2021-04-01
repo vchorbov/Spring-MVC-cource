@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -36,9 +37,15 @@ public class ShowController {
 
     }
 
-    @GetMapping("/delete")
-    public ModelAndView delete(ModelAndView modelAndView, HttpSession session) {
-        session.getAttribute("name");
-        return modelAndView;
+    @GetMapping(path ="/delete/{name}")
+    public ModelAndView delete(@PathVariable String name, ModelAndView modelAndView) {
+      boolean exists = this.virusService.eradicateVirusByName(name);
+      if(!exists){
+          throw new IllegalArgumentException("The virus cannot be eradicated, because it does not exist!");
+      }
+       this.virusService.eradicateVirusByName(name);
+       modelAndView.setViewName("redirect:/show");
+       return modelAndView;
     }
+
 }
